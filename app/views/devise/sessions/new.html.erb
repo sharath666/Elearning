@@ -1,0 +1,47 @@
+
+      
+      <!-- ===================================================
+        Login Page
+      ==================================================== -->
+      <div class="theme-login-page">
+        <div class="logo"><a href="index.html"><img src="<%= asset_path 'elearning/images/dct-academy.jpg' %>" alt=""></a></div>
+        <div class="form-wrapper">
+    
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+    <%= f.label :password %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  
+
+  <% if devise_mapping.rememberable? -%>
+<ul class="clearfix">
+  <li class="float-left">
+  <%= f.check_box :remember_me %>
+  
+  </li>
+  <li class="float-right "><%= f.submit "Log in" %></li>
+  <p><a class="p-color"><%= render "devise/shared/links" %></a></p>
+            </ul>
+      
+    </div>
+  <% end -%>
+<% end %>
+
+<!-- 
+            <input type="text" placeholder="Username or email">
+            <input type="password" placeholder="Password"
+            <ul class="clearfix">
+              <li class="float-left">
+                <input type="checkbox" id="remember">
+                <label for="remember">Remember Me</label>
+              </li>
+              <li class="float-right"><button class="theme-button tran3s">LOG IN</button></li>
+            </ul>
+            <p><a href="#" class="p-color">Forgot your username or pasword?</a></p>
+            <p>Don’t have an account? <a href="sign-up.html" class="p-color">Sign Up</a></p> -->
+          </form>
+        </div> <!-- /.form-wrapper -->
+      </div>
+          

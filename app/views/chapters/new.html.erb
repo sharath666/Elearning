@@ -1,0 +1,13 @@
+<div class="container">
+<div class="row">
+<div class="col-md-4 col-md-offset-4">
+<div class="Absolute-Center is-Responsive">
+<h3>New Chapter</h3>
+
+<%= render 'form', chapter: @chapter %>
+</div>
+<%= link_to 'Back', course_chapters_path(@chapter.course)%>
+
+</div>
+</div>
+</div>

@@ -1,0 +1,42 @@
+
+<%= render 'layouts/partials/sliders' %>
+    <!-- /.theme-inner-banner -->
+
+
+
+<div class="featured-course">
+        <div class="container">
+          <div class="theme-title">
+            <h2>Our Featured Courses</h2>
+            <p>Choose the course you need from our wide range of courses online, start learning today from the best teachers</p>
+          </div> <!-- /.theme-title -->
+          
+          <div class="row">
+          <% @courses.each do |course| %>
+            <div class="col-md-4 col-sm-6 col-xs-12">
+            
+              <div class="single-course-grid">
+                <div class="image"><img src="<%= asset_path 'elearning/images/course/1.jpg' %>" alt=""></div>
+                <div class="text">
+                  <h6><%= link_to course.name, course %></h6>
+                  
+                  <p><%= raw course.description %></p>
+                  <ul class="clearfix">
+                    <li class="float-left"><img src="<%= asset_path 'elearning/images/course/t1.jpg' %>" alt="">Chris</li>
+                    <li class="float-left"><i class="fa fa-user" aria-hidden="true"></i> 575</li>
+                    <li class="float-right"><a href="#" class="tran3s free hvr-float-shadow">Free</a></li>
+                  </ul>
+                </div> <!-- /.text -->
+              </div>
+              <!-- /.single-course-grid -->
+            
+            </div> <!-- /.col- -->
+             <!-- /.col- -->
+             <!-- /.row -->
+             
+          <% end %>
+        </div>
+        <!-- /.container -->
+      </div>
+      
+      

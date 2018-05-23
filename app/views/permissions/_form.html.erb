@@ -1,0 +1,63 @@
+
+<%= form_with(model: permission, local: true) do |form| %>
+  <% if permission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(permission.errors.count, "error") %> prohibited this permission from being saved:</h2>
+
+      <ul>
+      <% permission.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="dropdown">
+    <%= form.label :model_lists %>
+    <%= form.collection_select :model_list_id, ModelList.all, :id, :name, prompt: "Select Model",  class: "dropdown-menu" %><br /><br />
+  </div>
+ 
+  <div class="field">
+    <%= form.label :is_create %>
+   <%= form.radio_button :is_create, 'true', :checked => true %>
+   
+   <%= form.radio_button :is_create, 'false', :checked => false %><br />
+  </div>
+
+  <div class="field">
+    <%= form.label :is_read %>
+    <%= form.radio_button :is_read, 'true', :checked => true %>
+   
+   <%= form.radio_button :is_read, 'false', :checked => false %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_update %>
+    <%= form.radio_button :is_update, 'true', :checked => true %>
+   
+   <%= form.radio_button :is_update, 'false', :checked => false %>
+  </div>
+
+
+  <div class="field">
+  <%= form.label :is_destroy %>
+  <%= form.radio_button :is_destroy, 'true', :checked => true %>
+   
+   <%= form.radio_button :is_destroy, 'false', :checked => false %>
+
+  </div>
+
+  <div class="field">
+    <%= form.label :role_id %>
+    <%= form.collection_select :role_id, Role.all, :id, :name, prompt: "Select Role" %><br /><br />
+  </div>
+
+
+  
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+

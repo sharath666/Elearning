@@ -1,0 +1,61 @@
+<div class="container">
+<div class="row">
+<div class="col-md-8">
+
+<div class="form-group">
+<%= form_for([@course, @lecture.chapter, @lecture], remote:true) do |form| %>
+
+  <% if lecture.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lecture.errors.count, "error") %> prohibited this lecture from being saved:</h2>
+
+      <ul>
+      <% lecture.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :lecture_name, class: "form-control" %>
+  </div>
+  <!-- <div class="field">
+    <%= form.label :chapter_id %>
+    <%= form.number_field :chapter_id, id: :lecture_chapter_id %>
+  </div> -->
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :lecture_description, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :video_url %>
+    <%= form.text_field :video_url, id: :lecture_video_url, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :video_duration %>
+    <%= form.text_field :video_duration, id: :lecture_video_duration, class: "form-control"%>
+  </div>
+
+<label> Instructor name </label>
+  <%= form.collection_select :instructor_id, Instructor.all, :id, :name, prompt: "Select Instructor", class: "form-control" %><br /><br />
+  
+  <label> Course </label>
+<%= form.collection_select :course_id, Course.all, :id, :name, prompt: "Select course", class: "form-control" %><br /><br />
+<br /><br />
+  <div class="actions">
+ <% if params[:id].nil? %>
+ <%= form.submit "Add lecture",  class: "btn btn-primary" %>
+     <% else %>
+     <%= form.submit "Update Lecture", class: "btn btn-primary" %>
+     <% end %>
+ </div>
+<% end %>
+</div>
+</div>
+</div>
+</div>

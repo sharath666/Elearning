@@ -1,0 +1,252 @@
+<p id="notice"><%= notice %></p>
+
+
+  <div class="theme-inner-banner" style="background:  no-repeat center;background-size:cover;">
+        <div class="opacity">
+          <div class="container">
+            <h3>COURSES</h3>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li>/</li>
+              <li>Single Course</li>
+            </ul>
+          </div> <!-- /.container -->
+        </div> <!-- /.opacity -->
+      </div> <!-- /.theme-inner-banner -->
+
+      <div class="course-details">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9 col-xs-12 float-right details-sidebar">
+              <h4><%= @course.name %></h4>
+              <div class="image-box">
+                <img src="<%=asset_path 'elearning/images/event/13.jpg' %>" alt="">
+                <div class="opacity"><a data-fancybox href="https://www.youtube.com/embed/r-AuLm7S3XE?rel=0&amp;showinfo=0" class="tran3s"><i class="fa fa-play" aria-hidden="true"></i></a></div>
+              </div>
+              <ul class="course-short-info clearfix">
+                <li class="float-left">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  <p>Duration</p>
+                  <span>25 Classes - 50 Hours</span>
+                </li>
+                <li class="float-left">
+                  <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                  <p>Categories</p>
+                  <span>PHP Development</span>
+                </li>
+               
+              </ul>
+              <p><%=  raw @course.description %></p>
+              <!-- <div class="topic-list">
+                <h5>Topics Include:</h5>
+                <div class="row">
+                  <div class="col-md-6">
+                    <ul>
+                      <li>Build amazing single page applications with React JS</li>
+                      <li>Identify the resource needs of the project</li>
+                      <li>Decompose work packages into activities</li>
+                      <li>Realize the power of building composable components</li>
+                    </ul>
+                  </div>
+                  <div class="col-md-6">
+                    <ul>
+                      <li>Determine the critical path and calculate float</li>
+                      <li>Identify the resource needs of the project</li>
+                      <li>Decompose work packages into activities</li>
+                      <li>Realize the power of building composable components</li>
+                    </ul>
+                  </div>
+                </div> <!-- /.row
+              </div>  --> <!-- /.topic-list -->
+
+
+              <% if can? :create, Chapter.new %>
+
+              <%= link_to 'New Chapter', new_course_chapter_path(@course,@chapter)  %>
+                <% end %>
+
+              <div class="curriculum-of-course">
+                <div class="clearfix">
+                  <h5 class="float-left">Curriculum for the Course</h5>
+                  <ul class="float-right">
+                    <li><span>110 </span> Lectures</li>
+                    <li><span>20:21:15 </span> Hours</li>
+                  </ul>
+                </div>
+                <div class="curriculum-panel">
+                <% @course.chapters.each do |chapter| %>
+
+                  <div class="panel-group theme-accordion" id="accordion">
+                    <div class="panel">
+                      <div class="panel-heading active-panel">
+                        <h5 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#cha<%= chapter.id %>" class="clearfix collapsed">
+                            <span class="float-left">
+
+                            
+                            <%= chapter.name %>
+                            </span>
+                            <span class="float-right">03:01:08</span>
+                            <span class="float-right">15 Lectures</span>
+                          </a>
+                        </h5>
+                      </div>
+                      <div id="cha<%= chapter.id%>" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                        <% chapter.lectures.each do |lecture| %>
+                          <ul>
+                            <li class="clearfix">
+                              <span class="float-left"><i class="fa fa-play-circle" aria-hidden="true"></i>
+                              <%= lecture.name %>
+                               </span>
+                              <span class="float-right">02:04</span>
+                              <span class="float-right">
+                                <%= link_to "Preview", course_chapter_lecture_path(@course, chapter,lecture) %>
+                              </span>
+                            </li>
+                          </ul>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <% end %> <!-- end #accordion -->
+                </div> <!-- End of .curriculum-panel -->
+              </div> <!-- /.curriculum-of-course -->
+
+              <!-- <div class="course-feedback">
+                <h5>Course Feedback</h5>
+                <div class="feedback-container">
+                  <ul class="clearfix">
+                    <li class="float-left">
+                      <h2>4.9</h2>
+                      <ul>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
+                      </ul>
+                      <p>Total Ratings <span>(9899)</span></p>
+                    </li>
+                    <li class="float-left">
+                      <ul class="clearfix">
+                        <li><div style="width:77%;"></div></li>
+                        <li id="rateFive" class="rating"></li>
+                        <li>10565</li>
+                        <li class="float-right">(77%)</li>
+                      </ul>
+                      <ul class="clearfix">
+                        <li><div style="width:55%;"></div></li>
+                        <li id="rateFourHalf" class="rating"></li>
+                        <li>5625</li>
+                        <li class="float-right">(10%)</li>
+                      </ul>
+                      <ul class="clearfix">
+                        <li><div style="width:40%;"></div></li>
+                        <li id="rateFour" class="rating"></li>
+                        <li>3725</li>
+                        <li class="float-right">(05%)</li>
+                      </ul>
+                      <ul class="clearfix">
+                        <li><div style="width:35%;"></div></li>
+                        <li id="rateThree" class="rating"></li>
+                        <li>1595</li>
+                        <li class="float-right">(05%)</li>
+                      </ul>
+                      <ul class="clearfix">
+                        <li><div style="width:20%;"></div></li>
+                        <li id="rateTwo" class="rating"></li>
+                        <li>1595</li>
+                        <li class="float-right">(03%)</li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div> <!-- /.feedback-container
+              </div> --> <!-- /.course-feedback -->
+
+             <!-- /#review -->
+
+              <!-- <div class="submit-review-form">
+                <h5>Submit a Review</h5>
+                <p>Submit a Review</p>
+                <li id="submit-rating" class="rating"></li>
+                <form action="#">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label>Full Name</label>
+                      <input type="text">
+                    </div>
+                    <div class="col-sm-6">
+                      <label>E-mail</label>
+                      <input type="email">
+                    </div>
+                  </div>
+                  <label>Your Message</label>
+                  <textarea></textarea>
+                  <button class="tran3s s-color-bg">SUBMIT</button>
+                </form>
+              </div>  --><!-- /.submit-review-form -->
+            </div> 
+
+            <div class="col-md-3 col-sm-6 col-xs-12 course-sidebar">
+            <div class="sidebar-teachers-profile">
+                <img src="<%= asset_path 'elearning/images/event/12.jpg' %>" alt="">
+                <h5>Jennifer Lawrence</h5>
+                <p>PHP Developer</p>
+                <ul class="rating">
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                  <li><i class="fa fa-star-half-o" aria-hidden="true"></i></li>
+                </ul>
+                <ul class="list">
+                  <li><i class="fa fa-comments" aria-hidden="true"></i>1250 Reviews</li>
+                  <li><i class="fa fa-users" aria-hidden="true"></i>75, 888 students</li>
+                  <li><i class="fa fa-laptop" aria-hidden="true"></i>20 Courses</li>
+                  <li><i class="fa fa-bolt" aria-hidden="true"></i>Trending Courses</li>
+                </ul>
+              </div>
+              <div class="purchase-badge">
+                <p>30-Day Money-Back Gurantee</p>
+                <ul>
+                  <li><i class="fa fa-film" aria-hidden="true"></i>15 hours of Video lectures</li>
+                  <li><i class="fa fa-tachometer" aria-hidden="true"></i> Beginner level</li>
+                  <li><i class="fa fa-battery-full" aria-hidden="true"></i> Lifetime access</li>
+                  <li><i class="fa fa-certificate" aria-hidden="true"></i> Certificate of completion</li>
+                </ul>
+              </div> <!-- /.purchase-badge -->
+
+               <!-- /.sidebar-teachers-profile -->
+            </div> <!-- /.course-sidebar -->
+          </div> <!-- /.row -->
+        </div> <!-- /.container -->
+      </div> <!-- /.feature-course-3-column -->
+
+
+      
+      <!-- 
+      =============================================
+        Footer
+      ============================================== 
+      -->
+      
+
+          
+
+          <!-- Scroll Top Button -->
+      <button class="scroll-top tran3s">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+      </button>
+
+
+    <!-- Js File_________________________________ -->
+
+    <!-- j Query -->
+    
+
+    </div> <!-- /.main-page-wrapper -->
+  </body>
+
+

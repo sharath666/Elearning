@@ -1,0 +1,2 @@
+class ModelList < ApplicationRecord
+end

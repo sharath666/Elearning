@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lecture:</strong>
+  <%= @viewership.lecture_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @viewership.user_id %>
+</p>
+
+<p>
+  <strong>Fully watched vedio:</strong>
+  <%= @viewership.fully_watched_vedio %>
+</p>
+
+<%= link_to 'Edit', edit_viewership_path(@viewership) %> |
+<%= link_to 'Back', viewerships_path %>

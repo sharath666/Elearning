@@ -1,0 +1,32 @@
+<%= form_with(model: viewership, local: true) do |form| %>
+  <% if viewership.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(viewership.errors.count, "error") %> prohibited this viewership from being saved:</h2>
+
+      <ul>
+      <% viewership.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :lecture_id %>
+    <%= form.number_field :lecture_id, id: :viewership_lecture_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :viewership_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fully_watched_vedio %>
+    <%= form.check_box :fully_watched_vedio, id: :viewership_fully_watched_vedio %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lecture_id: 1
+  user_id: 1
+  fully_watched_vedio: false
+
+two:
+  lecture_id: 1
+  user_id: 1
+  fully_watched_vedio: false

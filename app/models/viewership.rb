@@ -1,0 +1,2 @@
+class Viewership < ApplicationRecord
+end

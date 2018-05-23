@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Model list:</strong>
+  <%= @permission.model_list_id %>
+</p>
+
+<p>
+  <strong>Is create:</strong>
+  <%= @permission.is_create %>
+</p>
+
+<p>
+  <strong>Is Read:</strong>
+  <%= @permission.is_read %>
+</p>
+
+<p>
+  <strong>Is update:</strong>
+  <%= @permission.is_update %>
+</p>
+
+<p>
+  <strong>Is destroy:</strong>
+  <%= @permission.is_destroy %>
+</p>
+
+<p>
+  <strong>Role:</strong>
+  <%= @permission.role_id %>
+</p>
+
+<%= link_to 'Edit', edit_permission_path(@permission) %> |
+<%= link_to 'Back', permissions_path %>

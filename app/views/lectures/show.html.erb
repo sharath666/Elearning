@@ -1,0 +1,197 @@
+<p id="notice"><%= notice %></p>
+
+
+
+
+      <div class="theme-inner-banner" style="background:  no-repeat center;background-size:cover;">
+        <div class="opacity">
+          <div class="container">
+            <h3>COURSES</h3>
+            <ul>
+              <li><a href="/courses">Home</a></li>
+              <li>/</li>
+              <li>Single Course</li>
+            </ul>
+          </div> <!-- /.container -->
+        </div> <!-- /.opacity -->
+      </div> <!-- /.theme-inner-banner -->
+
+
+      
+      <!-- 
+      =============================================
+        Course Details
+      ============================================== 
+      -->
+      <div class="course-details">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-7 col-xs-12 float-right details-sidebar">
+              <h4><%= @lecture.name %></h4>
+              <br />
+              <div class="video_url">
+  <iframe   id="vedio" width="560" height="315" src="https://www.youtube.com/embed/<%=@lecture.video_url%>?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+
+              <ul class="course-short-info clearfix">
+                <li class="float-left">
+                  <i class="fa fa-clock-o" aria-hidden="true"></i>
+                  <p>Duration</p>
+                  <span><%= @lecture.video_duration%></span>
+                </li>
+                <li class="float-left">
+                  <i class="fa fa-bookmark-o" aria-hidden="true"></i>
+                  <p>Categories</p>
+                  <span>PHP Development</span>
+                </li>
+              </ul>
+              <p>
+                <%= @lecture.description %>
+              </p>
+              <div id="review">
+                <h5>Reviews</h5>
+                <% if @lecture.comments.nil? %>
+                <h3> No Reviews Found</h3>
+                <% else %>
+                <% @lecture.comments.each do |comment| %>
+                
+             <!-- /.single-review -->
+             <% end %>
+             <% end %>
+              </div> <!-- /#review -->
+
+              <div class="submit-review-form">
+                <h5>Submit a Review</h5>
+                <%= form_for([@course, @chapter,@lecture,@comment], remote:true) do |form| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+      <% @comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div id="errorMsg"></div>
+  <div class="field">
+    <%= form.label :message %>
+    <%= form.text_area :message, id: :comment_message %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Submit", class: "tran3s s-color-bg" %>
+  </div>
+<% end %>
+
+                <!-- <li id="submit-rating" class="rating"></li>
+                <form action="#">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <label>Full Name</label>
+                      <input type="text">
+                    </div>
+                    <div class="col-sm-6">
+                      <label>E-mail</label>
+                      <input type="email">
+                    </div>
+                  </div>
+                  <label>Your Message</label>
+                  <textarea></textarea> -->
+                  
+                </form>
+              </div> <!-- /.submit-review-form -->
+            </div> <!-- /.details-sidebar -->
+            <div class="row">
+            <div class="col-md-5 col-xs-12 float-left details-sidebar">
+
+            <div class="curriculum-of-course">
+                  <% if can? :create, Lecture.new %>
+                   <%= link_to "New Lecture", new_course_chapter_lecture_path(@course, @chapter, @lecture) %>
+                <% end %>
+
+
+           
+                <div class="clearfix">
+                  <h5 class="float-left">
+                    <%= @course.name %>
+                  </h5>
+                  
+                </div>
+                <div class="curriculum-panel">
+                
+                  <% @course.chapters.each do |chapter| %>
+                  <div class="panel-group theme-accordion" id="accordion">
+                    <div class="panel">
+                      <div class="panel-heading active-panel">
+                        <h5 class="panel-title">
+                          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" class="clearfix">
+                            <span class="float-left">
+
+                            
+                            <%= chapter.name %>
+                            </span>
+                            <span class="float-right">03:01:08</span>
+                            <span class="float-right"><%= chapter.lectures.length %> videos</span>
+                          </a>
+                        </h5>
+                      </div>
+                      <div id="collapse1" class="panel-collapse collapse in">
+                        <div class="panel-body">
+                        <% chapter.lectures.each do |lecture| %>
+                          <ul>
+                            <li class="clearfix">
+                              <span class="float-left"><i class="fa fa-play-circle" aria-hidden="true"></i>
+                              <%= lecture.name %>
+                               </span>
+                              <span class="float-right">02:04</span>
+                              <span class="float-right">
+                                <%= link_to "Preview", course_chapter_lecture_path(@course, chapter,lecture) %>
+                              </span>
+                            </li>
+                          </ul>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <% end %> <!-- end #accordion -->
+                         
+                        </div>
+                      </div>
+                    </div> <!-- /panel 1 -->
+                     <!-- /panel 4 -->
+                  </div> <!-- end #accordion -->
+                </div> <!-- End of .curriculum-panel -->
+              </div> 
+
+           
+
+          
+              
+            </div> <!-- /.course-sidebar -->
+          </div> <!-- /.row -->
+        </div> <!-- /.container -->
+      </div> <!-- /.feature-course-3-column -->
+
+
+      
+      <!-- 
+      =============================================
+        Footer
+      ============================================== 
+      -->
+      
+          
+
+          <!-- Scroll Top Button -->
+      <button class="scroll-top tran3s">
+        <i class="fa fa-angle-up" aria-hidden="true"></i>
+      </button>
+
+
+    
+
+    </div> <!-- /.main-page-wrapper -->
+  </body>

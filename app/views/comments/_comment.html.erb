@@ -1,0 +1,16 @@
+<div class="single-review clearfix">
+
+<img src="<%= asset_path 'elearning/images/event/14.jpg' %>" alt="" class="float-left">
+<div class="text float-left">
+<div class="clearfix">
+<div class="float-left">
+<span><%= @comment.created_at %></span>
+<span></span>
+<h6><%= @comment.user.try(:email) %></h6>
+</div>
+
+</div> <!-- /.clearfix -->
+<p><%= @comment.message %></p>
+</div> <!-- /.text --> 
+
+</div>

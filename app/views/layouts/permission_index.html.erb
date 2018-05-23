@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prelearing</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+  <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+  <%= csrf_meta_tags %>
+  </head>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Elearning</a>
+    </div>
+
+<% if user_signed_in? %>
+  
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav">
+  
+  
+  
+
+  <% if current_user.role?("admin")%>
+  <li><a href="/courses">Course</a></li>
+  <li><a href="/categories">Categories</a></li>
+  <% end %>
+
+  <% if current_user.role?("admin") %>
+
+<li><a href="/users/user_count">Users</a></li>
+
+
+  <% end %>
+  <li><a href="/users/edit"><i class="glyphicon glyphicon-user"> <%= current_user.email %></i></a></li>
+  <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+  </ul>
+  </div>
+  
+   <% else %>
+   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/users/sign_up">Register</a></li>
+        <li><a href="/users/sign_in">Login</a></li>
+        <li><a href="/rooms">Rooms</a></li>
+      </ul>
+      
+  </div>
+
+
+<% end %>
+</div>
+</nav>
+
+<div class="container">
+<div class="row">
+<div class="col-md-8">
+
+<p id="notice"><%= notice %></p>
+
+<h1>Permissions</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Model list</th>
+      <th>Is create</th>
+      <th>Is Read</th>
+      <th>Is update</th>
+      <th>Is destroy</th>
+      <th>Role</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @permissions.each do |permission| %>
+      <tr>
+        <td><%= permission.model_list.name.singularize.capitalize %></td>
+        <td><%= permission.is_create %></td>
+        <td><%= permission.is_read %></td>
+        <td><%= permission.is_update %></td>
+        <td><%= permission.is_destroy %></td>
+        <td><%= permission.role.name %></td>
+        <% if can? :read, Permission.all %>
+        <td><%= link_to 'Show', permission %></td>
+        <% end %>
+        <% if can? :update, permission %>
+        <td><%= link_to 'Edit', edit_permission_path(permission) %></td>
+        <% end %>
+        <% if can? :destroy, permission %>
+        <td><%= link_to 'Destroy', permission, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if can? :create, Permission.new %>
+<%= link_to 'New Permission', new_permission_path %>
+<% end %>
+
+</div>
+</div>
+</div>

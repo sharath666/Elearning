@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<p>
+  <strong>Name:</strong>
+  <%= @chapter.name %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @chapter.course.name%>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @chapter.position %>
+</p>
+
+<%= link_to 'lectures', course_chapter_lectures_path(:chapter_id => @chapter.id) %> 
+
+<%= link_to 'Edit', edit_course_chapter_path(@chapter.course, @chapter) %> |
+<!-- /posts/:post_id/comments/ -->
+<%= link_to 'Back', course_chapters_path(@chapter.course) %>
+
+

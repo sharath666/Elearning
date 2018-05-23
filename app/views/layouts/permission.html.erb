@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Prelearing</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+  <script src="https://cdn.ckeditor.com/4.7.3/standard/ckeditor.js"></script>
+  <%= csrf_meta_tags %>
+  </head>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Elearning</a>
+    </div>
+
+<% if user_signed_in? %>
+  
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav">
+  
+  
+
+  <li><a href="/permissions">permission</a></li>
+  <li><a href="/categories">Categories</a></li>
+  <li><a href="/users/user_count">Users</a></li>
+
+   
+
+
+
+
+  <li><a href="/users/edit"><i class="glyphicon glyphicon-user"> <%= current_user.email %></i></a></li>
+  <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+  </ul>
+  </div>
+  
+   <% else %>
+   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/users/sign_up">Register</a></li>
+        <li><a href="/users/sign_in">Login</a></li>
+        <li><a href="/rooms">Rooms</a></li>
+      </ul>
+      
+  </div>
+
+
+<% end %>
+</nav>
+
+<div class="container">
+<div class="row">
+<div class="col-md-8">
+
+<div class="form-group">
+<%= form_for(@permission) do |form| %>
+  <% if @permission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@permission.errors.count, "error") %> prohibited this permission from being saved:</h2>
+
+      <ul>
+      <% permission.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="dropdown">
+    <%= form.label :model_lists %>
+    <%= form.collection_select :model_list_id, ModelList.all, :id, :name, prompt: "Select Model",  class: "dropdown-menu" %><br /><br />
+  </div>
+ 
+  <div class="field">
+    <%= form.label :is_create %>
+   <%= form.radio_button :is_create, 'true', :checked => true %>
+   
+   <%= form.radio_button :is_create, 'false', :checked => false %><br />
+  </div>
+
+  <div class="field">
+    <%= form.label :is_read %>
+    <%= form.radio_button :is_read, 'true', :checked => true %>
+   
+   <%= form.radio_button :is_read, 'false', :checked => false %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_update %>
+    <%= form.radio_button :is_update, 'true', :checked => true %>
+   
+   <%= form.radio_button :is_update, 'false', :checked => false %>
+  </div>
+
+
+  <div class="field">
+  <%= form.label :is_destroy %>
+  <%= form.radio_button :is_destroy, 'true', :checked => true %>
+   
+   <%= form.radio_button :is_destroy, 'false', :checked => false %>
+   </div>
+   <div class="field">
+    <%= form.label :role_id %>
+    <%= form.collection_select :role_id, Role.all, :id, :name, prompt: "Select Role" %><br /><br />
+  </div>
+
+
+<div class="actions">
+ <% if params[:id].nil? %>
+ <%= form.submit "Add permission",  class: "btn btn-primary" %>
+     <% else %>
+     <%= form.submit "Update permission", class: "btn btn-primary" %>
+     <% end %>
+ </div>
+<% end %>
+</div>
+</div>
+</div>
+</div>
