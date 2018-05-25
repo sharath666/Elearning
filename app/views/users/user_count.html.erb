@@ -1,11 +1,12 @@
 <p id="notice"><%= notice %></p>
 
 
-<table class="table">
+<table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th>Email</th>
+      <th>Vedios Watched </th>
+      <th> is_active </th>
     </tr>
   </thead>
 
@@ -15,8 +16,11 @@
         <td><%= user.email %></td>
         <td><%= user.lecture_counts.count %></td>
         <td> <%= user.is_present  %></td>
-
+         <% if  user.is_present == true %>
         <td><%= link_to 'Block',users_user_update_path({:user_id => user.id}),  method: :put %>
+        `<% else %>
+        <td><%=  link_to 'Un Block', users_user_unblock_path({:user_id =>user.id}), method: :put %>
+        <% end %>
 
         </td>
 

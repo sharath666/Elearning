@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -54,8 +53,9 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
+      <th>Email</th>
+      <th>Viewed vedios</th>
+      <th>Active</th>
     </tr>
   </thead>
 
@@ -66,10 +66,11 @@
         <td><%= user.lecture_counts.count %></td>
         <td> <%= user.is_present  %></td>
 
+         <% if  user.is_present == true %>
         <td><%= link_to 'Block',users_user_update_path({:user_id => user.id}),  method: :put %>
-
-        </td>
-
+        `<% else %>
+        <td><%=  link_to 'Un Block', users_user_unblock_path({:user_id =>user.id}), method: :put %>
+        <% end %>
 
 
 

@@ -6,11 +6,17 @@
       <div class="theme-inner-banner" style="background:  no-repeat center;background-size:cover;">
         <div class="opacity">
           <div class="container">
-            <h3>COURSES</h3>
+            <h3><%= @lecture.name %></h3>
             <ul>
-              <li><a href="/courses">Home</a></li>
+              <li><a href="/courses">Courses</a></li>
               <li>/</li>
-              <li>Single Course</li>
+              <li><a href="/courses/<%=@lecture.course_id  %>/chapters"><%= @lecture.course_id %></a>/</li>
+              <li><a href="/courses/<%= @lecture.course_id %>/chapters">
+              Chapters/
+              </li>
+
+              <li><a href="/courses/<%= @lecture.course_id %>/chapters/<%= @lecture.chapter_id %>"></a></li>
+              <li><%= @lecture.name %></li>
             </ul>
           </div> <!-- /.container -->
         </div> <!-- /.opacity -->

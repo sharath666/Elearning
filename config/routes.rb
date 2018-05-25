@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/users/user_count' => 'users/user_count'
 
   put '/users/user_update' => 'users/user_update'
+
+  put '/users/user_unblock' => 'users/user_unblock'
 resources :courses do 
 	resources :chapters do
 	resources :lectures do 
