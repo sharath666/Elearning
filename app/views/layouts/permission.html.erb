@@ -47,8 +47,7 @@
       <ul class="nav navbar-nav">
         <li><a href="/users/sign_up">Register</a></li>
         <li><a href="/users/sign_in">Login</a></li>
-        <li><a href="/rooms">Rooms</a></li>
-      </ul>
+              </ul>
       
   </div>
 
@@ -76,7 +75,7 @@
 
  
     <% ModelList.all.each do |model_list| %>
-           <%= check_box_tag model_list.name,  model_list.name,  {:checked => "false"}  %>
+           <%=  check_box_tag "model_lists_ids[]", model_list.name %>
 
 
   <!-- <div class="dropdown">

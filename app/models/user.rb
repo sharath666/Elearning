@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
          before_validation :assign_def_role
          has_many :comments
          belongs_to :role
@@ -10,7 +11,11 @@ class User < ApplicationRecord
          def role?(role)
           self.role.name.include?(role)
     	end
+
+
+
          def assign_def_role
+          self.is_present = true
          	self.role_id = Role.last.id
          end
 end

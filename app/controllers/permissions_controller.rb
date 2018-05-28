@@ -28,6 +28,7 @@ class PermissionsController < ApplicationController
   # POST /permissions
   # POST /permissions.json
   def create
+    binding.pry
     @permission = Permission.new(permission_params)
 
     respond_to do |format|

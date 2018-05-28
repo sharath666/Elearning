@@ -50,13 +50,13 @@
                   <% if current_user.role.name == "admin" %>
                   <li class="dropdown-holder">  <li><a href="/users/user_count">Users</a></li>
                   <% end %>
-                  <% end %>
+                 
                   </li>
 
                   <li class="dropdown-holder">  <li><a href="/permissions">Permissions</a></li>
                   </li>
                   <li><a href="contact-us.html" class="tran3s">Contact</a></li>
-                  <% if user_signed_in? %>
+                  
                    <li class="dropdown-holder"><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
                    <% else %>
                    <li class="dropdown-holder"><li><a href="/users/sign_in">Login</a></li>

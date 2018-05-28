@@ -1,15 +1,15 @@
 class UsersController < ApplicationController
 	 
-	 layout "/layouts/user_list", only: [:user_count]
+	 layout "user_list", only: [:user_count]
 	def user_count
 		@users = User.all
 	end
+
 
 	
 
 
 	def user_update
-		binding.pry
 		@user = User.find(params["user_id"])
 		@user.update_attributes(is_present:false)
 
